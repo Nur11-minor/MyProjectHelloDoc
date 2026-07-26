@@ -8,11 +8,6 @@ import android.view.View
 import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toast
-import android.animation.ValueAnimator
-import android.graphics.RenderEffect
-import android.graphics.RuntimeShader
-import android.os.Build
-import android.view.ViewAnimationUtils
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
@@ -49,10 +44,6 @@ class ReceiverProfileActivity : AppCompatActivity() {
     // SharedPreferences for session management
     private lateinit var sharedPreferences: SharedPreferences
 
-    // UI Cards for animation
-    private lateinit var profileCard: View
-    private lateinit var healthSummaryCard: View
-
     // Data
     private var appointments = mutableListOf<Appointment>()
     private var cares = mutableListOf<Care>()
@@ -69,9 +60,6 @@ class ReceiverProfileActivity : AppCompatActivity() {
         loadUserData()
         loadAppointments()
         loadCares()
-
-        // Start Reveal Animations
-        startRevealAnimations()
     }
 
     private fun initViews() {
@@ -92,64 +80,6 @@ class ReceiverProfileActivity : AppCompatActivity() {
 
         // Initialize Logout Button
         btnLogout = findViewById(R.id.btnLogout)
-
-        // Initialize Cards
-        profileCard = findViewById(R.id.profileCard)
-        healthSummaryCard = findViewById(R.id.healthSummaryCard)
-    }
-
-    private fun startRevealAnimations() {
-        // Apply reveal to profile card
-        profileCard.post {
-            applyInkBleedReveal(profileCard, 0)
-        }
-
-        // Apply reveal to health summary card with slight delay
-        healthSummaryCard.post {
-            applyInkBleedReveal(healthSummaryCard, 200)
-        }
-
-        // Apply reveal to profile image
-        profileImage.post {
-            applyInkBleedReveal(profileImage, 400)
-        }
-    }
-
-    private fun applyInkBleedReveal(view: View, startDelay: Long) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            // Android 13+ (API 33+) supports RuntimeShader (AGSL)
-            val shader = RuntimeShader(INK_BLEED_SHADER)
-            val renderEffect = RenderEffect.createRuntimeShaderEffect(shader, "iContent")
-            view.setRenderEffect(renderEffect)
-
-            val animator = ValueAnimator.ofFloat(0f, 1f)
-            animator.duration = 1200
-            animator.startDelay = startDelay
-            animator.addUpdateListener { animation ->
-                val progress = animation.animatedValue as Float
-                shader.setFloatUniform("iProgress", progress)
-                shader.setFloatUniform("iResolution", view.width.toFloat(), view.height.toFloat())
-                view.invalidate()
-            }
-            animator.addListener(object : android.animation.AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: android.animation.Animator) {
-                    view.setRenderEffect(null) // Clean up
-                }
-            })
-            animator.start()
-        } else {
-            // Fallback for older versions: Circular Reveal
-            view.visibility = View.INVISIBLE
-            view.postDelayed({
-                view.visibility = View.VISIBLE
-                val cx = view.width / 2
-                val cy = view.height / 2
-                val finalRadius = Math.hypot(cx.toDouble(), cy.toDouble()).toFloat()
-                val anim = ViewAnimationUtils.createCircularReveal(view, cx, cy, 0f, finalRadius)
-                anim.duration = 800
-                anim.start()
-            }, startDelay)
-        }
     }
 
     private fun setupClickListeners() {
@@ -334,59 +264,5 @@ class ReceiverProfileActivity : AppCompatActivity() {
         params.height = totalHeight + (listView.dividerHeight * (listAdapter.count - 1))
         listView.layoutParams = params
         listView.requestLayout()
-    }
-
-    companion object {
-        private const val INK_BLEED_SHADER = """
-            uniform float2 iResolution;
-            uniform float iProgress;
-            uniform shader iContent;
-
-            float hash(float2 p) {
-                p = fract(p * float2(123.34, 456.21));
-                p += dot(p, p + 45.32);
-                return fract(p.x * p.y);
-            }
-
-            float noise(float2 p) {
-                float2 i = floor(p);
-                float2 f = fract(p);
-                float a = hash(i);
-                float b = hash(i + float2(1.0, 0.0));
-                float c = hash(i + float2(0.0, 1.0));
-                float d = hash(i + float2(1.0, 1.0));
-                float2 u = f * f * (3.0 - 2.0 * f);
-                return mix(a, b, u.x) + (c - a) * u.y * (1.0 - u.x) + (d - b) * u.x * u.y;
-            }
-
-            float fbm(float2 p) {
-                float v = 0.0;
-                float a = 0.5;
-                for (int i = 0; i < 4; i++) {
-                    v += a * noise(p);
-                    p *= 2.0;
-                    a *= 0.5;
-                }
-                return v;
-            }
-
-            half4 main(float2 fragCoord) {
-                float2 uv = fragCoord / iResolution.xy;
-                float2 p = (uv - 0.5) * 2.0;
-                p.x *= iResolution.x / iResolution.y;
-                
-                float d = length(p);
-                float n = fbm(uv * 6.0);
-                
-                float threshold = iProgress * 2.2 - 0.6;
-                float bleed = d - n * 0.5;
-                
-                if (bleed < threshold) {
-                    return iContent.eval(fragCoord);
-                } else {
-                    return half4(0.0);
-                }
-            }
-        """
     }
 }

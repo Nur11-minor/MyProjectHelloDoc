@@ -1,5 +1,6 @@
 plugins {
     id("com.android.application")
+    alias(libs.plugins.google.gms.google.services)
     // Note: 'org.jetbrains.kotlin.android' is no longer required with AGP 9.0+ built-in Kotlin
 }
 
@@ -44,6 +45,10 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation("androidx.core:core:1.12.0")
     implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.credentials)
+    implementation(libs.androidx.credentials.play.services.auth)
+    implementation(libs.firebase.auth)
+    implementation(libs.googleid)
     implementation(libs.material)
     implementation(libs.androidx.constraintlayout)
     implementation("androidx.cardview:cardview:1.0.0")
