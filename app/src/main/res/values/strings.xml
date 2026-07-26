@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">HelloDoc</string>
+    <string name="app_logo">App Logo</string>
+    <string name="recent_cares_received">Recent Cares Received</string>
+</resources>

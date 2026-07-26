@@ -1,0 +1,724 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/activity_bg_gradient"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_medium">
+
+        <!-- Header Section -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/headerLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:paddingVertical="@dimen/padding_small"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/profileTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="My Profile"
+                android:textColor="#1A237E"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <FrameLayout
+                android:id="@+id/notificationBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="4dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <ImageView
+                    android:id="@+id/notificationIcon"
+                    android:layout_width="28dp"
+                    android:layout_height="28dp"
+                    android:src="@drawable/icon_bell"
+                    android:clickable="true"
+                    android:focusable="true" />
+
+                <View
+                    android:id="@+id/notificationDot"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:background="@drawable/notification_badge"
+                    android:layout_gravity="top|end"
+                    android:visibility="visible" />
+            </FrameLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Profile Glass Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/profileCard"
+            style="@style/GlassCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_medium"
+            app:layout_constraintTop_toBottomOf="@id/headerLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_large">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/profileImage"
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:src="@drawable/profile_pic"
+                    app:civ_border_color="#2196F3"
+                    app:civ_border_width="3dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:id="@+id/userInfoLayout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/padding_medium"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="@id/profileImage"
+                    app:layout_constraintEnd_toStartOf="@id/editProfileIcon"
+                    app:layout_constraintStart_toEndOf="@id/profileImage"
+                    app:layout_constraintTop_toTopOf="@id/profileImage">
+
+                    <TextView
+                        android:id="@+id/greetingText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Good Morning,"
+                        android:textColor="#757575"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/userName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text="Nur E Alam"
+                        android:textColor="#1A237E"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:layout_marginEnd="6dp"
+                            android:background="@drawable/online_status" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Active Now"
+                            android:textColor="#4CAF50"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/editProfileIcon"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:padding="8dp"
+                    android:src="@drawable/ic_edit"
+                    app:layout_constraintBottom_toBottomOf="@id/profileImage"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/profileImage" />
+
+                <View
+                    android:id="@+id/profileDivider"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:background="#1F000000"
+                    app:layout_constraintTop_toBottomOf="@id/profileImage"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+
+                <LinearLayout
+                    android:id="@+id/statsLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="3"
+                    app:layout_constraintTop_toBottomOf="@id/profileDivider">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/totalAppointments"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="12"
+                            android:textColor="#2196F3"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Appts"
+                            android:textColor="#757575"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="30dp"
+                        android:background="#1F000000" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/totalCares"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="08"
+                            android:textColor="#4DB6AC"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cares"
+                            android:textColor="#757575"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="30dp"
+                        android:background="#1F000000" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/totalProviders"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="05"
+                            android:textColor="#FF9800"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Doctors"
+                            android:textColor="#757575"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/buttonsLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/padding_large"
+                    android:orientation="horizontal"
+                    android:weightSum="2"
+                    app:layout_constraintTop_toBottomOf="@id/statsLayout">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnBookAppointment"
+                        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginEnd="6dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#2196F3"
+                        android:text="Book Now"
+                        android:textAllCaps="false"
+                        android:textColor="#FFFFFF"
+                        app:cornerRadius="@dimen/card_radius_medium"
+                        app:icon="@drawable/ic_calendar"
+                        app:iconSize="18dp"
+                        app:iconTint="#FFFFFF" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnMedicalRecords"
+                        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
+                        android:layout_width="0dp"
+                        android:layout_height="48dp"
+                        android:layout_marginStart="6dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="#4DB6AC"
+                        android:text="Records"
+                        android:textAllCaps="false"
+                        android:textColor="#FFFFFF"
+                        app:cornerRadius="@dimen/card_radius_medium"
+                        app:icon="@drawable/ic_medical"
+                        app:iconSize="18dp"
+                        app:iconTint="#FFFFFF" />
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Health Summary -->
+        <TextView
+            android:id="@+id/healthSummaryTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_large"
+            android:text="Health Summary"
+            android:textColor="#1A237E"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profileCard" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/healthSummaryCard"
+            style="@style/GlassCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_small"
+            app:layout_constraintTop_toBottomOf="@id/healthSummaryTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:rowCount="2"
+                android:padding="@dimen/padding_small">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/glass_card_bg"
+                    android:backgroundTint="#F0F4FF"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_medium">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Blood"
+                        android:textColor="#757575"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="AB+"
+                        android:textColor="#1A237E"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/glass_card_bg"
+                    android:backgroundTint="#FFF3E0"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_medium">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Age"
+                        android:textColor="#757575"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="32 Years"
+                        android:textColor="#1A237E"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/glass_card_bg"
+                    android:backgroundTint="#E8F5E9"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_medium">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="BMI"
+                        android:textColor="#757575"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="22.5"
+                        android:textColor="#1A237E"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_columnWeight="1"
+                    android:layout_margin="4dp"
+                    android:background="@drawable/glass_card_bg"
+                    android:backgroundTint="#FCE4EC"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_medium">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Allergies"
+                        android:textColor="#757575"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="None"
+                        android:textColor="#1A237E"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </GridLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Appointments Section -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/appointmentsHeader"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_large"
+            app:layout_constraintTop_toBottomOf="@id/healthSummaryCard"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/appointmentsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Recent Appointments"
+                android:textColor="#1A237E"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <TextView
+                android:id="@+id/viewAllAppointments"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View All"
+                android:textColor="#2196F3"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/appointmentsCard"
+            style="@style/GlassCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_small"
+            app:layout_constraintTop_toBottomOf="@id/appointmentsHeader"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ListView
+                android:id="@+id/appointmentListView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="#1F000000"
+                android:dividerHeight="1dp"
+                android:padding="@dimen/padding_small"
+                tools:listitem="@layout/item_appointment" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Cares Section -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/caresHeader"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_large"
+            app:layout_constraintTop_toBottomOf="@id/appointmentsCard"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <TextView
+                android:id="@+id/caresTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/recent_cares_received"
+                android:textColor="#1A237E"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <TextView
+                android:id="@+id/viewAllCares"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View All"
+                android:textColor="#2196F3"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/caresCard"
+            style="@style/GlassCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_small"
+            app:layout_constraintTop_toBottomOf="@id/caresHeader"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ListView
+                android:id="@+id/caresListView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:divider="#1F000000"
+                android:dividerHeight="1dp"
+                android:padding="@dimen/padding_small"
+                tools:listitem="@layout/item_care_received" />
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Quick Links -->
+        <TextView
+            android:id="@+id/quickLinksTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_large"
+            android:text="Quick Actions"
+            android:textColor="#1A237E"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/caresCard" />
+
+        <GridLayout
+            android:id="@+id/quickLinksGrid"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_small"
+            android:columnCount="2"
+            android:rowCount="2"
+            app:layout_constraintTop_toBottomOf="@id/quickLinksTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/medicalRecordsLink"
+                style="@style/GlassCard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="6dp"
+                android:clickable="true"
+                android:focusable="true">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_medium">
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_medical_records"
+                        app:tint="#2196F3" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Records"
+                        android:textColor="#1A237E"
+                        android:textSize="13sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/prescriptionsLink"
+                style="@style/GlassCard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="6dp"
+                android:clickable="true"
+                android:focusable="true">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_medium">
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_prescription"
+                        app:tint="#FF9800" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Prescripts"
+                        android:textColor="#1A237E"
+                        android:textSize="13sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/testResultsLink"
+                style="@style/GlassCard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="6dp"
+                android:clickable="true"
+                android:focusable="true">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_medium">
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_test_results"
+                        app:tint="#4CAF50" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Results"
+                        android:textColor="#1A237E"
+                        android:textSize="13sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/helpSupportLink"
+                style="@style/GlassCard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="6dp"
+                android:clickable="true"
+                android:focusable="true">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_medium">
+                    <ImageView
+                        android:layout_width="32dp"
+                        android:layout_height="32dp"
+                        android:src="@drawable/ic_help"
+                        app:tint="#E91E63" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:text="Support"
+                        android:textColor="#1A237E"
+                        android:textSize="13sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+        </GridLayout>
+
+        <!-- Logout Section -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnLogout"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_large"
+            android:layout_marginBottom="@dimen/padding_large"
+            android:text="Logout Account"
+            android:textColor="#F44336"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            app:icon="@drawable/ic_logout"
+            app:iconTint="#F44336"
+            app:layout_constraintTop_toBottomOf="@id/quickLinksGrid"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

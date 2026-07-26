@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="12dp"
+    android:background="?android:attr/selectableItemBackground">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvProviderName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dr. Sarah Johnson"
+            android:textColor="#1A237E"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvCareType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Health Checkup"
+            android:textColor="#757575"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/tvDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jan 10, 2024"
+            android:textColor="#757575"
+            android:textSize="12sp"
+            android:layout_marginTop="4dp" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvCareStatus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Completed"
+        android:textColor="#FFFFFF"
+        android:textSize="11sp"
+        android:padding="6dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:gravity="center" />
+
+</LinearLayout>

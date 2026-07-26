@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="glass_white">#4DFFFFFF</color> <!-- 30% alpha white -->
+    <color name="glass_border">#80FFFFFF</color> <!-- 50% alpha white -->
+    <color name="bg_gradient_start">#E3F2FD</color> <!-- Light Blue 50 -->
+    <color name="bg_gradient_end">#BBDEFB</color>   <!-- Light Blue 100 -->
+    <color name="primary_blue">#2196F3</color>
+</resources>

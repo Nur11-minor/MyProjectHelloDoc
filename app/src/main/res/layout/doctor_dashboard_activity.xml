@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/activity_bg_gradient"
+    android:fillViewport="true"
+    android:layout_marginTop="15dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_medium">
+
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:id="@+id/progressIndicator"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:indeterminate="true"
+            android:visibility="gone"
+            app:indicatorColor="#2196F3"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/headerLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/profileThumbnail">
+
+                <TextView
+                    android:id="@+id/welcomeText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Welcome Back,"
+                    android:textColor="#757575"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/doctorName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Dr. Nur E Alam"
+                    android:textColor="#1A237E"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profileThumbnail"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:src="@drawable/profile_pic"
+                app:civ_border_width="2dp"
+                app:civ_border_color="#2196F3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/statusCard"
+            style="@style/GlassCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_medium"
+            app:layout_constraintTop_toBottomOf="@id/headerLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_medium">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Active for Appointments"
+                    android:textColor="#1A237E"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/availabilitySwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <GridLayout
+            android:id="@+id/statsGrid"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:rowCount="2"
+            android:layout_marginTop="@dimen/padding_medium"
+            android:useDefaultMargins="true"
+            app:layout_constraintTop_toBottomOf="@id/statusCard"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <!-- Today's Appointments -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/GlassCard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_small"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/todayAppointments"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="#2196F3"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Today"
+                        android:textSize="12sp"
+                        android:textColor="#757575"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Pending Requests -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/GlassCard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_small"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/pendingRequests"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="#FF9800"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Pending"
+                        android:textSize="12sp"
+                        android:textColor="#757575"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Total Earnings -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/GlassCard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_small"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/totalEarnings"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="$0"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="#4CAF50"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Earnings"
+                        android:textSize="12sp"
+                        android:textColor="#757575"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- Avg Rating -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/GlassCard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_small"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/avgRating"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="0.0"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        android:textColor="#FFC107"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Rating"
+                        android:textSize="12sp"
+                        android:textColor="#757575"/>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </GridLayout>
+
+
+        <TextView
+            android:id="@+id/appointmentsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Today's Appointments"
+            android:textColor="#1A237E"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/padding_large"
+            app:layout_constraintTop_toBottomOf="@id/statsGrid"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/viewAllAppointments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="View All"
+            android:textColor="#2196F3"
+            android:textSize="14sp"
+            app:layout_constraintTop_toTopOf="@id/appointmentsTitle"
+            app:layout_constraintBottom_toBottomOf="@id/appointmentsTitle"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/appointmentsCard"
+            style="@style/GlassCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_small"
+            app:layout_constraintTop_toBottomOf="@id/appointmentsTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <ListView
+                android:id="@+id/dashboardAppointmentList"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:divider="#E0E0E0"
+                android:dividerHeight="1dp"
+                android:padding="@dimen/padding_small"
+                tools:listitem="@layout/item_appointment" />
+        </com.google.android.material.card.MaterialCardView>
+
+
+        <TextView
+            android:id="@+id/actionsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quick Actions"
+            android:textColor="#1A237E"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/padding_large"
+            app:layout_constraintTop_toBottomOf="@id/appointmentsCard"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/quickActionsLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/padding_small"
+            android:layout_marginBottom="@dimen/padding_large"
+            app:layout_constraintTop_toBottomOf="@id/actionsTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnPatients"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Patients"
+                android:textSize="10sp"
+                android:layout_marginEnd="4dp"
+                app:icon="@drawable/ic_medical"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRecords"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Records"
+                android:textSize="10sp"
+                android:layout_marginEnd="4dp"
+                app:icon="@drawable/ic_medical_records"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSettings"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Settings"
+                android:textSize="9sp"
+                app:icon="@drawable/ic_edit"
+                style="@style/Widget.MaterialComponents.Button.OutlinedButton" />
+
+        </LinearLayout>
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/logoutCard"
+            style="@style/GlassCard"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/padding_medium"
+            android:layout_marginBottom="@dimen/padding_medium"
+            app:layout_constraintTop_toBottomOf="@id/quickActionsLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_medium">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnLogout"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:text="Logout"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:backgroundTint="#F44336"
+                    app:cornerRadius="@dimen/card_radius_small"
+                    app:icon="@drawable/ic_logout"
+                    app:iconTint="#FFFFFF"
+                    app:iconGravity="textStart"
+                    android:letterSpacing="0.5" />
+
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>

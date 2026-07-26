@@ -1,0 +1,766 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F7FA"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/padding_medium"
+        android:layout_marginTop="@dimen/padding_medium">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/headerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="@dimen/padding_medium">
+
+            <ImageView
+                android:id="@+id/backButton"
+                android:layout_width="@dimen/image_small"
+                android:layout_height="@dimen/image_small"
+                android:src="@drawable/ic_back"
+                android:padding="4dp"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Doctor Profile"
+                android:textColor="#1A237E"
+                app:autoSizeTextType="uniform"
+                app:autoSizeMinTextSize="16sp"
+                app:autoSizeMaxTextSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginStart="@dimen/padding_medium"
+                app:layout_constraintStart_toEndOf="@id/backButton"
+                app:layout_constraintEnd_toStartOf="@id/notificationBadge"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+            <FrameLayout
+                android:id="@+id/notificationBadge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent">
+
+                <ImageView
+                    android:id="@+id/notificationIcon"
+                    android:layout_width="@dimen/image_small"
+                    android:layout_height="@dimen/image_small"
+                    android:src="@drawable/icon_bell"
+                    android:padding="4dp"
+                    android:clickable="true"
+                    android:focusable="true" />
+            </FrameLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/profileCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/card_radius_large"
+            app:cardElevation="8dp"
+            app:cardBackgroundColor="#FFFFFF"
+            app:layout_constraintTop_toBottomOf="@id/headerLayout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="@dimen/padding_medium">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_large">
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/doctorImage"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:src="@drawable/profile_pic"
+                    app:civ_border_width="3dp"
+                    app:civ_border_color="#2196F3"
+                    app:layout_constraintWidth_percent="0.2"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:layout_marginStart="@dimen/padding_medium"
+                    app:layout_constraintStart_toEndOf="@id/doctorImage"
+                    app:layout_constraintEnd_toStartOf="@id/shareProfile"
+                    app:layout_constraintTop_toTopOf="@id/doctorImage"
+                    app:layout_constraintBottom_toBottomOf="@id/doctorImage">
+
+                    <TextView
+                        android:id="@+id/doctorName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Dr. Nur E Alam"
+                        android:textColor="#1A237E"
+                        app:autoSizeTextType="uniform"
+                        app:autoSizeMinTextSize="16sp"
+                        app:autoSizeMaxTextSize="20sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/doctorSpecialty"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Psychiatrists"
+                        android:textColor="#2196F3"
+                        app:autoSizeTextType="uniform"
+                        app:autoSizeMinTextSize="12sp"
+                        app:autoSizeMaxTextSize="14sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="4dp"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="@dimen/text_medium"
+                            android:layout_height="@dimen/text_medium"
+                            android:src="@drawable/ic_star"
+                            android:layout_marginEnd="4dp" />
+
+                        <TextView
+                            android:id="@+id/doctorRating"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="4.8"
+                            android:textColor="#FF9800"
+                            app:autoSizeTextType="uniform"
+                            app:autoSizeMinTextSize="12sp"
+                            app:autoSizeMaxTextSize="14sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="(128 reviews)"
+                            android:textColor="#757575"
+                            app:autoSizeTextType="uniform"
+                            app:autoSizeMinTextSize="10sp"
+                            app:autoSizeMaxTextSize="12sp"
+                            android:layout_marginStart="4dp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/shareProfile"
+                    android:layout_width="@dimen/image_small"
+                    android:layout_height="@dimen/image_small"
+                    android:src="@drawable/ic_share"
+                    android:padding="4dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <LinearLayout
+                    android:id="@+id/statsLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/padding_medium"
+                    android:gravity="center"
+                    android:weightSum="4"
+                    app:layout_constraintTop_toBottomOf="@id/doctorImage">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/totalPatients"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1,247"
+                            android:textColor="#2196F3"
+                            app:autoSizeTextType="uniform"
+                            app:autoSizeMinTextSize="14sp"
+                            app:autoSizeMaxTextSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Patients"
+                            android:textColor="#757575"
+                            app:autoSizeTextType="uniform"
+                            app:autoSizeMinTextSize="9sp"
+                            app:autoSizeMaxTextSize="11sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="@dimen/divider_height"
+                        android:layout_height="30dp"
+                        android:background="#E0E0E0" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/totalExperience"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="69"
+                            android:textColor="#4DB6AC"
+                            app:autoSizeTextType="uniform"
+                            app:autoSizeMinTextSize="14sp"
+                            app:autoSizeMaxTextSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Years Exp."
+                            android:textColor="#757575"
+                            app:autoSizeTextType="uniform"
+                            app:autoSizeMinTextSize="9sp"
+                            app:autoSizeMaxTextSize="11sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="@dimen/divider_height"
+                        android:layout_height="30dp"
+                        android:background="#E0E0E0" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/totalAppointments"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="856"
+                            android:textColor="#FF9800"
+                            app:autoSizeTextType="uniform"
+                            app:autoSizeMinTextSize="14sp"
+                            app:autoSizeMaxTextSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Appointments"
+                            android:textColor="#757575"
+                            app:autoSizeTextType="uniform"
+                            app:autoSizeMinTextSize="9sp"
+                            app:autoSizeMaxTextSize="11sp" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="@dimen/divider_height"
+                        android:layout_height="30dp"
+                        android:background="#E0E0E0" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <TextView
+                            android:id="@+id/satisfactionRate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="98%"
+                            android:textColor="#9C27B0"
+                            app:autoSizeTextType="uniform"
+                            app:autoSizeMinTextSize="14sp"
+                            app:autoSizeMaxTextSize="18sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Satisfaction"
+                            android:textColor="#757575"
+                            app:autoSizeTextType="uniform"
+                            app:autoSizeMinTextSize="9sp"
+                            app:autoSizeMaxTextSize="11sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <View
+                    android:id="@+id/divider"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/divider_height"
+                    android:background="#E0E0E0"
+                    android:layout_marginVertical="@dimen/padding_medium"
+                    app:layout_constraintTop_toBottomOf="@id/statsLayout" />
+
+
+                <LinearLayout
+                    android:id="@+id/contactInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintTop_toBottomOf="@id/divider">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="@dimen/padding_small">
+
+                        <ImageView
+                            android:layout_width="@dimen/text_medium"
+                            android:layout_height="@dimen/text_medium"
+                            android:src="@drawable/ic_location"
+                            android:tint="#757575" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/padding_medium"
+                            android:text="420, DIPTI 5th floor"
+                            android:textColor="#424242"
+                            app:autoSizeTextType="uniform"
+                            app:autoSizeMinTextSize="11sp"
+                            app:autoSizeMaxTextSize="13sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="@dimen/padding_small">
+
+                        <ImageView
+                            android:layout_width="@dimen/text_medium"
+                            android:layout_height="@dimen/text_medium"
+                            android:src="@drawable/ic_phone"
+                            android:tint="#757575" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/padding_medium"
+                            android:text="+880 1874603003"
+                            android:textColor="#424242"
+                            app:autoSizeTextType="uniform"
+                            app:autoSizeMinTextSize="11sp"
+                            app:autoSizeMaxTextSize="13sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/text_medium"
+                            android:layout_height="@dimen/text_medium"
+                            android:src="@drawable/ic_email"
+                            android:tint="#757575" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/padding_medium"
+                            android:text="dr.heat49@medical.com"
+                            android:textColor="#424242"
+                            app:autoSizeTextType="uniform"
+                            app:autoSizeMinTextSize="11sp"
+                            app:autoSizeMaxTextSize="13sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/availabilityLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="@dimen/padding_medium"
+                    android:background="#F0F4FF"
+                    android:padding="@dimen/padding_medium"
+                    android:gravity="center_vertical"
+                    app:layout_constraintTop_toBottomOf="@id/contactInfo">
+
+                    <View
+                        android:layout_width="@dimen/status_indicator_size"
+                        android:layout_height="@dimen/status_indicator_size"
+                        android:background="@drawable/online_status"
+                        android:layout_marginEnd="@dimen/padding_small" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Available for appointments"
+                        android:textColor="#1A237E"
+                        app:autoSizeTextType="uniform"
+                        app:autoSizeMinTextSize="11sp"
+                        app:autoSizeMaxTextSize="13sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Mon-Fri 9AM-6PM"
+                        android:textColor="#757575"
+                        app:autoSizeTextType="uniform"
+                        app:autoSizeMinTextSize="10sp"
+                        app:autoSizeMaxTextSize="12sp" />
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/aboutSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/profileCard"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="@dimen/padding_medium">
+
+            <TextView
+                android:id="@+id/aboutTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="About"
+                android:textColor="#1A237E"
+                app:autoSizeTextType="uniform"
+                app:autoSizeMinTextSize="14sp"
+                app:autoSizeMaxTextSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginBottom="@dimen/padding_small" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="@dimen/card_radius_medium"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:layout_constraintTop_toBottomOf="@id/aboutTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/padding_medium"
+                    android:text="Dr. Nur E Alam is a board-certified psychiatrist with over 69 years of experience in treating mental patients."
+                    android:textColor="#424242"
+                    app:autoSizeTextType="uniform"
+                    app:autoSizeMinTextSize="12sp"
+                    app:autoSizeMaxTextSize="14sp"
+                    android:lineSpacingExtra="4dp" />
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/qualificationsSection"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/aboutSection"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="@dimen/padding_medium">
+
+            <TextView
+                android:id="@+id/qualificationsTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Qualifications"
+                android:textColor="#1A237E"
+                app:autoSizeTextType="uniform"
+                app:autoSizeMinTextSize="14sp"
+                app:autoSizeMaxTextSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginBottom="@dimen/padding_small" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="@dimen/card_radius_medium"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:layout_constraintTop_toBottomOf="@id/qualificationsTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="@dimen/padding_medium">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="@dimen/padding_medium">
+
+                        <ImageView
+                            android:layout_width="@dimen/text_large"
+                            android:layout_height="@dimen/text_large"
+                            android:src="@drawable/ic_education"
+                            android:tint="#2196F3" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginStart="@dimen/padding_medium">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="MD - Psychiatry"
+                                android:textColor="#1A237E"
+                                app:autoSizeTextType="uniform"
+                                app:autoSizeMinTextSize="12sp"
+                                app:autoSizeMaxTextSize="14sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Harvard Medical School"
+                                android:textColor="#757575"
+                                app:autoSizeTextType="uniform"
+                                app:autoSizeMinTextSize="10sp"
+                                app:autoSizeMaxTextSize="12sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="@dimen/padding_medium">
+
+                        <ImageView
+                            android:layout_width="@dimen/text_large"
+                            android:layout_height="@dimen/text_large"
+                            android:src="@drawable/ic_education"
+                            android:tint="#4DB6AC" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginStart="@dimen/padding_medium">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Fellowship in Interventional Psychiatry"
+                                android:textColor="#1A237E"
+                                app:autoSizeTextType="uniform"
+                                app:autoSizeMinTextSize="12sp"
+                                app:autoSizeMaxTextSize="14sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Stanford University Medical Center"
+                                android:textColor="#757575"
+                                app:autoSizeTextType="uniform"
+                                app:autoSizeMinTextSize="10sp"
+                                app:autoSizeMaxTextSize="12sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="@dimen/text_large"
+                            android:layout_height="@dimen/text_large"
+                            android:src="@drawable/ic_certificate"
+                            android:tint="#FF9800" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_marginStart="@dimen/padding_medium">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Board Certified"
+                                android:textColor="#1A237E"
+                                app:autoSizeTextType="uniform"
+                                app:autoSizeMinTextSize="12sp"
+                                app:autoSizeMaxTextSize="14sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="American Board of Internal Medicine"
+                                android:textColor="#757575"
+                                app:autoSizeTextType="uniform"
+                                app:autoSizeMinTextSize="10sp"
+                                app:autoSizeMaxTextSize="12sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/bookButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardCornerRadius="@dimen/card_radius_small"
+            app:cardElevation="8dp"
+            app:cardBackgroundColor="#2196F3"
+            app:layout_constraintTop_toBottomOf="@id/qualificationsSection"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/padding_small"
+            android:layout_marginBottom="@dimen/padding_medium">
+
+            <LinearLayout
+                android:id="@+id/bookAppointmentButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="@dimen/padding_medium"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:layout_width="@dimen/text_large"
+                    android:layout_height="@dimen/text_large"
+                    android:src="@drawable/ic_calendar"
+                    android:tint="#FFFFFF"
+                    android:layout_marginEnd="@dimen/padding_medium" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Book Appointment"
+                    android:textColor="#FFFFFF"
+                    app:autoSizeTextType="uniform"
+                    app:autoSizeMinTextSize="14sp"
+                    app:autoSizeMaxTextSize="16sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:layout_width="@dimen/text_large"
+                    android:layout_height="@dimen/text_large"
+                    android:src="@drawable/ic_arrow_forward"
+                    android:tint="#FFFFFF"
+                    android:layout_marginStart="@dimen/padding_medium" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/bookButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="@dimen/padding_medium">
+
+            <TextView
+                android:id="@+id/similarTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Similar Doctors"
+                android:textColor="#1A237E"
+                app:autoSizeTextType="uniform"
+                app:autoSizeMinTextSize="14sp"
+                app:autoSizeMaxTextSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/viewAllDoctors"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginBottom="@dimen/padding_small" />
+
+            <TextView
+                android:id="@+id/viewAllDoctors"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View All"
+                android:textColor="#2196F3"
+                app:autoSizeTextType="uniform"
+                app:autoSizeMinTextSize="12sp"
+                app:autoSizeMaxTextSize="14sp"
+                android:clickable="true"
+                android:focusable="true"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="@dimen/card_radius_medium"
+                app:cardElevation="4dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:layout_constraintTop_toBottomOf="@id/similarTitle"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <ListView
+                    android:id="@+id/relatedDoctorsListView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:divider="#E0E0E0"
+                    android:dividerHeight="@dimen/divider_height"
+                    android:padding="@dimen/padding_small"
+                    tools:listitem="@layout/item_doctor" />
+
+            </androidx.cardview.widget.CardView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
