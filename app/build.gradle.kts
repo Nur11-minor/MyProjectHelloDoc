@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.yourpackage.hellodoc"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.yourpackage.hellodoc"
