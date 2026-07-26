@@ -34,8 +34,6 @@
             android:textSize="30sp"
             android:textColor="#1A237E"
             android:textStyle="bold"
-            app:autoSizeMinTextSize="18sp"
-            app:autoSizeMaxTextSize="24sp"
             app:layout_constraintTop_toBottomOf="@id/signupLogo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -47,9 +45,7 @@
             android:layout_height="wrap_content"
             android:text="Create your account"
             android:textColor="#757575"
-            app:autoSizeTextType="uniform"
-            app:autoSizeMinTextSize="12sp"
-            app:autoSizeMaxTextSize="14sp"
+            android:textSize="14sp"
             app:layout_constraintTop_toBottomOf="@id/signupTitle"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -80,13 +76,9 @@
                     android:layout_height="wrap_content"
                     android:inputType="none"
                     android:padding="@dimen/padding_medium"
-                    app:autoSizeTextType="uniform"
-                    app:autoSizeMinTextSize="14sp"
-                    app:autoSizeMaxTextSize="16sp"
                     tools:text="Care Receiver" />
 
             </com.google.android.material.textfield.TextInputLayout>
-
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/nameLayout"
@@ -96,29 +88,12 @@
                 android:layout_marginTop="@dimen/padding_medium">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@id/text_input_edit_text"
+                    android:id="@+id/nameEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Full Name"
                     android:inputType="textPersonName" />
             </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/emailLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_marginTop="@dimen/padding_medium">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@id/text_input_edit_text"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="Email"
-                    android:inputType="textEmailAddress" />
-            </com.google.android.material.textfield.TextInputLayout>
-
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/phoneLayout"
@@ -128,13 +103,12 @@
                 android:layout_marginTop="@dimen/padding_medium">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@id/text_input_edit_text"
+                    android:id="@+id/phoneEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Phone Number"
                     android:inputType="phone" />
             </com.google.android.material.textfield.TextInputLayout>
-
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/passwordLayout"
@@ -145,13 +119,12 @@
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@id/text_input_edit_text"
+                    android:id="@+id/passwordEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Password"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
-
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/confirmPasswordLayout"
@@ -162,258 +135,20 @@
                 app:passwordToggleEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@id/text_input_edit_text"
+                    android:id="@+id/confirmPasswordEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Confirm Password"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
-
-            <LinearLayout
-                android:id="@+id/providerFields"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone">
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/divider_height"
-                    android:background="#E0E0E0"
-                    android:layout_marginVertical="@dimen/padding_medium" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Professional Details"
-                    android:textColor="#1A237E"
-                    app:autoSizeTextType="uniform"
-                    app:autoSizeMinTextSize="14sp"
-                    app:autoSizeMaxTextSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="@dimen/padding_medium" />
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/specializationLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:hint="Specialization">
-
-                    <AutoCompleteTextView
-                        android:id="@+id/specializationDropdown"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="none"
-                        android:padding="@dimen/padding_medium"
-                        app:autoSizeTextType="uniform"
-                        app:autoSizeMinTextSize="14sp"
-                        app:autoSizeMaxTextSize="16sp"
-                        tools:text="Cardiologist" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/licenseLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_marginTop="@dimen/padding_medium">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@id/text_input_edit_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Medical License Number"
-                        android:inputType="text" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/experienceLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_marginTop="@dimen/padding_medium">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@id/text_input_edit_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Years of Experience"
-                        android:inputType="number" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/hospitalLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_marginTop="@dimen/padding_medium">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@id/text_input_edit_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Hospital / Clinic Name"
-                        android:inputType="text" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/feeLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_marginTop="@dimen/padding_medium">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@id/text_input_edit_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Consultation Fee (৳)"
-                        android:inputType="number" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-            </LinearLayout>
-
-
-            <LinearLayout
-                android:id="@+id/receiverFields"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone">
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/divider_height"
-                    android:background="#E0E0E0"
-                    android:layout_marginVertical="@dimen/padding_medium" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Personal Details"
-                    android:textColor="#1A237E"
-                    app:autoSizeTextType="uniform"
-                    app:autoSizeMinTextSize="14sp"
-                    app:autoSizeMaxTextSize="16sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="@dimen/padding_medium" />
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/dobLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:hint="Date of Birth">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@id/text_input_edit_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="date"
-                        android:focusable="false"
-                        android:clickable="true"
-                        tools:text="01/01/1990" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/genderLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_marginTop="@dimen/padding_medium"
-                    android:hint="Gender">
-
-                    <AutoCompleteTextView
-                        android:id="@+id/genderDropdown"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="none"
-                        android:padding="@dimen/padding_medium"
-                        app:autoSizeTextType="uniform"
-                        app:autoSizeMinTextSize="14sp"
-                        app:autoSizeMaxTextSize="16sp"
-                        tools:text="Male" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/bloodGroupLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_marginTop="@dimen/padding_medium"
-                    android:hint="Blood Group">
-
-                    <AutoCompleteTextView
-                        android:id="@+id/bloodGroupDropdown"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:inputType="none"
-                        android:padding="@dimen/padding_medium"
-                        app:autoSizeTextType="uniform"
-                        app:autoSizeMinTextSize="14sp"
-                        app:autoSizeMaxTextSize="16sp"
-                        tools:text="A+" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/addressLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_marginTop="@dimen/padding_medium">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@id/text_input_edit_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Address"
-                        android:inputType="textPostalAddress" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/emergencyLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                    android:layout_marginTop="@dimen/padding_medium">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@id/text_input_edit_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:hint="Emergency Contact Number"
-                        android:inputType="phone" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-            </LinearLayout>
-
             <CheckBox
                 android:id="@+id/termsCheckbox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="I agree to the Terms &amp; Conditions and Privacy Policy"
+                android:text="I agree to the Terms &amp; Conditions"
                 android:textColor="#424242"
-                app:autoSizeTextType="uniform"
-                app:autoSizeMinTextSize="12sp"
-                app:autoSizeMaxTextSize="14sp"
                 android:layout_marginTop="@dimen/padding_medium" />
-
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/signupButton"
@@ -427,13 +162,15 @@
 
         </LinearLayout>
 
-        <androidx.constraintlayout.widget.Barrier
-            android:id="@+id/fieldsBarrier"
+        <ProgressBar
+            android:id="@+id/signupProgressBar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:barrierDirection="bottom"
-            app:constraint_referenced_ids="signupCard" />
-
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <TextView
             android:id="@+id/loginLink"
@@ -441,10 +178,8 @@
             android:layout_height="wrap_content"
             android:text="Already have an account? Login"
             android:textColor="#2196F3"
-            app:autoSizeTextType="uniform"
-            app:autoSizeMinTextSize="12sp"
-            app:autoSizeMaxTextSize="14sp"
-            app:layout_constraintTop_toBottomOf="@id/fieldsBarrier"
+            android:textSize="14sp"
+            app:layout_constraintTop_toBottomOf="@id/signupCard"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginTop="@dimen/padding_medium"
