@@ -36,7 +36,6 @@ class ReceiverProfileActivity : AppCompatActivity() {
 
     // UI Elements
     private lateinit var btnBookAppointment: MaterialButton
-    private lateinit var btnMedicalRecords: MaterialButton
 
     // NEW: Logout Button
     private lateinit var btnLogout: MaterialButton
@@ -76,7 +75,6 @@ class ReceiverProfileActivity : AppCompatActivity() {
         notificationIcon = findViewById(R.id.notificationIcon)
         editProfileIcon = findViewById(R.id.editProfileIcon)
         btnBookAppointment = findViewById(R.id.btnBookAppointment)
-        btnMedicalRecords = findViewById(R.id.btnMedicalRecords)
 
         // Initialize Logout Button
         btnLogout = findViewById(R.id.btnLogout)
@@ -105,10 +103,6 @@ class ReceiverProfileActivity : AppCompatActivity() {
 
         btnBookAppointment.setOnClickListener {
             Toast.makeText(this, "Opening booking screen", Toast.LENGTH_SHORT).show()
-        }
-
-        btnMedicalRecords.setOnClickListener {
-            Toast.makeText(this, "Opening medical records", Toast.LENGTH_SHORT).show()
         }
 
         // NEW: Logout Button Click Listener

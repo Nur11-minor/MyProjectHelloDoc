@@ -257,47 +257,22 @@
                     </LinearLayout>
                 </LinearLayout>
 
-                <LinearLayout
-                    android:id="@+id/buttonsLayout"
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnBookAppointment"
+                    style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="56dp"
                     android:layout_marginTop="@dimen/padding_large"
-                    android:orientation="horizontal"
-                    android:weightSum="2"
-                    app:layout_constraintTop_toBottomOf="@id/statsLayout">
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnBookAppointment"
-                        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-                        android:layout_width="0dp"
-                        android:layout_height="48dp"
-                        android:layout_marginEnd="6dp"
-                        android:layout_weight="1"
-                        android:backgroundTint="#2196F3"
-                        android:text="Book Now"
-                        android:textAllCaps="false"
-                        android:textColor="#FFFFFF"
-                        app:cornerRadius="@dimen/card_radius_medium"
-                        app:icon="@drawable/ic_calendar"
-                        app:iconSize="18dp"
-                        app:iconTint="#FFFFFF" />
-
-                    <com.google.android.material.button.MaterialButton
-                        android:id="@+id/btnMedicalRecords"
-                        style="@style/Widget.MaterialComponents.Button.UnelevatedButton"
-                        android:layout_width="0dp"
-                        android:layout_height="48dp"
-                        android:layout_marginStart="6dp"
-                        android:layout_weight="1"
-                        android:backgroundTint="#4DB6AC"
-                        android:text="Records"
-                        android:textAllCaps="false"
-                        android:textColor="#FFFFFF"
-                        app:cornerRadius="@dimen/card_radius_medium"
-                        app:icon="@drawable/ic_medical"
-                        app:iconSize="18dp"
-                        app:iconTint="#FFFFFF" />
-                </LinearLayout>
+                    android:backgroundTint="#2196F3"
+                    android:text="Book Appointment Now"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="16sp"
+                    app:cornerRadius="@dimen/card_radius_medium"
+                    app:icon="@drawable/ic_calendar"
+                    app:iconSize="20dp"
+                    app:iconTint="#FFFFFF"
+                    app:layout_constraintTop_toBottomOf="@id/statsLayout" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
