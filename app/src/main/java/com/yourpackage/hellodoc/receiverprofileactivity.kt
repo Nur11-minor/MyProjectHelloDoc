@@ -102,7 +102,7 @@ class ReceiverProfileActivity : AppCompatActivity() {
         }
 
         btnBookAppointment.setOnClickListener {
-            Toast.makeText(this, "Opening booking screen", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, BookAppointmentActivity::class.java))
         }
 
         // NEW: Logout Button Click Listener
