@@ -2,15 +2,26 @@ package com.yourpackage.hellodoc
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ArrayAdapter
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
+import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.yourpackage.hellodoc.adapters.DoctorAdapter
 import com.yourpackage.hellodoc.models.RelatedDoctor
 
 class BookAppointmentActivity : AppCompatActivity() {
 
     private lateinit var doctorsListView: ListView
+    private lateinit var searchEditText: MaterialAutoCompleteTextView
+    
+    private val specialties = arrayOf(
+        "Cardiology", "Dermatology", "Neurology", "Orthopedics", 
+        "Pediatrics", "Psychiatry", "Gynecology", "Ophthalmology", 
+        "Urology", "Gastroenterology", "Oncology", "Endocrinology",
+        "Dentistry", "ENT Specialist", "General Physician", "Radiology",
+        "Hematology", "Nephrology", "Pulmonology", "Rheumatology"
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +29,7 @@ class BookAppointmentActivity : AppCompatActivity() {
 
         setupToolbar()
         initViews()
+        setupSearchSuggestions()
         loadTopDoctors()
     }
 
@@ -30,6 +42,23 @@ class BookAppointmentActivity : AppCompatActivity() {
 
     private fun initViews() {
         doctorsListView = findViewById(R.id.doctorsListView)
+        searchEditText = findViewById(R.id.searchEditText)
+    }
+
+    private fun setupSearchSuggestions() {
+        val adapter = ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, specialties)
+        searchEditText.setAdapter(adapter)
+
+        searchEditText.setOnItemClickListener { parent, _, position, _ ->
+            val selectedSpecialty = parent.getItemAtPosition(position) as String
+            filterDoctors(selectedSpecialty)
+        }
+    }
+
+    private fun filterDoctors(query: String) {
+        // In a real app, you would filter your data source here
+        // For now, we'll just show a toast or reload with dummy filtered data
+        android.widget.Toast.makeText(this, "Searching for: $query", android.widget.Toast.LENGTH_SHORT).show()
     }
 
     private fun loadTopDoctors() {
