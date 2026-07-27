@@ -50,6 +50,18 @@
             android:name=".DoctorDashboardActivity"
             android:exported="false" />
         <activity
+            android:name=".MedicalRecordsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PrescriptionsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TestResultsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".HelpSupportActivity"
+            android:exported="false" />
+        <activity
             android:name=".item_appoinment"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />

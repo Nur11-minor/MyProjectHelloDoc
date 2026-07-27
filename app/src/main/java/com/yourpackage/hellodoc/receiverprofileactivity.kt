@@ -122,16 +122,16 @@ class ReceiverProfileActivity : AppCompatActivity() {
 
     private fun setupQuickLinks() {
         findViewById<View>(R.id.medicalRecordsLink).setOnClickListener {
-            Toast.makeText(this, "Opening Medical Records", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, MedicalRecordsActivity::class.java))
         }
         findViewById<View>(R.id.prescriptionsLink).setOnClickListener {
-            Toast.makeText(this, "Opening Prescriptions", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, PrescriptionsActivity::class.java))
         }
         findViewById<View>(R.id.testResultsLink).setOnClickListener {
-            Toast.makeText(this, "Opening Test Results", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, TestResultsActivity::class.java))
         }
         findViewById<View>(R.id.helpSupportLink).setOnClickListener {
-            Toast.makeText(this, "Opening Help & Support", Toast.LENGTH_SHORT).show()
+            startActivity(Intent(this, HelpSupportActivity::class.java))
         }
     }
 
