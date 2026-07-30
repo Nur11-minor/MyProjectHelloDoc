@@ -2,4 +2,12 @@
     <string name="app_name">HelloDoc</string>
     <string name="app_logo">App Logo</string>
     <string name="recent_cares_received">Recent Cares Received</string>
+    <string name="user_name_placeholder">Alex Johnson</string>
+    <string name="user_details_placeholder">Male, 34 years • Blood Type: A+</string>
+    <string name="book_appointment">Book Appointment</string>
+    <string name="medical_reports">Medical Reports</string>
+    <string name="prescriptions">Prescriptions</string>
+    <string name="test_results">Test Results</string>
+    <string name="recent_reports">Recent Reports</string>
+    <string name="view_all">View All</string>
 </resources>
