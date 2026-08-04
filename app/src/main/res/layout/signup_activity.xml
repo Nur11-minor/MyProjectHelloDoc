@@ -87,32 +87,27 @@
             android:orientation="vertical"
             app:layout_constraintTop_toBottomOf="@id/signupSubtitle">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Full Name"
-                android:textColor="@color/text_color_primary"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp" />
-
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/userTypeLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:boxCornerRadiusBottomEnd="12dp"
                 app:boxCornerRadiusBottomStart="12dp"
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp">
-                <com.google.android.material.textfield.TextInputEditText
+                <AutoCompleteTextView
+                    android:id="@+id/userTypeDropdown"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Johnathan Doe" />
+                    android:hint="Select User Type"
+                    android:inputType="none" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Email Address"
+                android:text="Full Name"
                 android:textColor="@color/text_color_primary"
                 android:textStyle="bold"
                 android:layout_marginTop="16dp"
@@ -127,10 +122,10 @@
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp">
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/nameEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="john@example.com"
-                    android:inputType="textEmailAddress" />
+                    android:hint="Johnathan Doe" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -148,31 +143,16 @@
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    app:boxCornerRadiusBottomEnd="12dp"
-                    app:boxCornerRadiusBottomStart="12dp"
-                    app:boxCornerRadiusTopEnd="12dp"
-                    app:boxCornerRadiusTopStart="12dp">
-                    <AutoCompleteTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:text="+1"
-                        android:inputType="none" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:layout_marginStart="12dp"
                     app:boxCornerRadiusBottomEnd="12dp"
                     app:boxCornerRadiusBottomStart="12dp"
                     app:boxCornerRadiusTopEnd="12dp"
                     app:boxCornerRadiusTopStart="12dp">
                     <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/phoneEditText"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:hint="(555) 000-0000"
@@ -199,60 +179,71 @@
                 app:boxCornerRadiusTopEnd="12dp"
                 app:boxCornerRadiusTopStart="12dp">
                 <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/passwordEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Confirm Password"
+                android:textColor="@color/text_color_primary"
+                android:textStyle="bold"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="Must be at least 8 characters with a number and symbol."
-                android:textColor="@color/text_color_secondary"
-                android:textSize="12sp" />
+                app:endIconMode="password_toggle"
+                app:boxCornerRadiusBottomEnd="12dp"
+                app:boxCornerRadiusBottomStart="12dp"
+                app:boxCornerRadiusTopEnd="12dp"
+                app:boxCornerRadiusTopStart="12dp">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/confirmPasswordEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword" />
+            </com.google.android.material.textfield.TextInputLayout>
         </LinearLayout>
 
         <com.google.android.material.checkbox.MaterialCheckBox
-            android:id="@+id/termsCheckBox"
+            android:id="@+id/termsCheckbox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="I agree to the Terms of Service and Privacy Policy regarding my medical data."
+            android:text="I agree to the Terms of Service"
             android:textColor="@color/text_color_secondary"
-            android:textSize="14sp"
             app:layout_constraintTop_toBottomOf="@id/formLayout" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btnCreateAccount"
+            android:id="@+id/signupButton"
             android:layout_width="match_parent"
             android:layout_height="56dp"
             android:layout_marginTop="24dp"
             android:backgroundTint="@color/color_primary_teal"
             android:text="Create Account"
-            android:textAllCaps="false"
-            android:textSize="16sp"
             app:cornerRadius="12dp"
-            app:icon="@drawable/ic_arrow_forward"
-            app:iconGravity="textEnd"
-            app:layout_constraintTop_toBottomOf="@id/termsCheckBox" />
+            app:layout_constraintTop_toBottomOf="@id/termsCheckbox" />
 
         <LinearLayout
+            android:id="@+id/loginLinkLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:layout_marginBottom="24dp"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnCreateAccount">
+            app:layout_constraintTop_toBottomOf="@id/signupButton">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Already have a HelloDoc account? "
-                android:textColor="@color/text_color_secondary" />
+                android:text="Already have an account? " />
 
             <TextView
                 android:id="@+id/loginLink"
@@ -262,6 +253,16 @@
                 android:textColor="@color/color_primary_teal"
                 android:textStyle="bold" />
         </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/signupProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

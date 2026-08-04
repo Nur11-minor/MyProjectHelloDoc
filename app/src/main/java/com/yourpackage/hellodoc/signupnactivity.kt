@@ -9,15 +9,12 @@ import android.widget.CheckBox
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.database.FirebaseDatabase
 import com.yourpackage.hellodoc.models.User
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+import com.yourpackage.hellodoc.viewmodel.SignupViewModel
 
 class SignupActivity : AppCompatActivity() {
 
@@ -31,8 +28,7 @@ class SignupActivity : AppCompatActivity() {
     private lateinit var termsCheckbox: CheckBox
     private lateinit var progressBar: ProgressBar
 
-    private lateinit var auth: FirebaseAuth
-    private lateinit var database: FirebaseDatabase
+    private val viewModel: SignupViewModel by viewModels()
 
     private var selectedUserType: String = ""
 
@@ -40,12 +36,10 @@ class SignupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.signup_activity)
 
-        auth = FirebaseAuth.getInstance()
-        database = FirebaseDatabase.getInstance()
-
         initViews()
         setupDropdowns()
         setupClickListeners()
+        observeViewModel()
     }
 
     private fun initViews() {
@@ -78,6 +72,23 @@ class SignupActivity : AppCompatActivity() {
         loginLink.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
+        }
+    }
+
+    private fun observeViewModel() {
+        viewModel.signupState.observe(this) { state ->
+            when (state) {
+                is SignupViewModel.SignupState.Loading -> showLoading(true)
+                is SignupViewModel.SignupState.Success -> {
+                    showLoading(false)
+                    Toast.makeText(this, "Account created successfully!", Toast.LENGTH_SHORT).show()
+                    navigateToDashboard(state.user.userType)
+                }
+                is SignupViewModel.SignupState.Error -> {
+                    showLoading(false)
+                    Toast.makeText(this, state.message, Toast.LENGTH_LONG).show()
+                }
+            }
         }
     }
 
@@ -117,20 +128,15 @@ class SignupActivity : AppCompatActivity() {
             return
         }
 
-        showLoading(true)
-        // Firebase Auth requires an email. We'll use phone number as an email alias.
-        val emailAlias = "${phone}@hellodoc.com"
-
-        auth.createUserWithEmailAndPassword(emailAlias, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    val userId = auth.currentUser?.uid ?: ""
-                    saveUserToDatabase(userId, name, phone, selectedUserType)
-                } else {
-                    showLoading(false)
-                    Toast.makeText(this, "Registration failed: ${task.exception?.message}", Toast.LENGTH_LONG).show()
-                }
-            }
+        val user = User(
+            id = "",
+            name = name,
+            email = "${phone}@hellodoc.com",
+            phone = phone,
+            userType = selectedUserType
+        )
+        
+        viewModel.signup(user, password)
     }
 
     private fun showLoading(isLoading: Boolean) {
@@ -138,32 +144,9 @@ class SignupActivity : AppCompatActivity() {
         signupButton.isEnabled = !isLoading
     }
 
-    private fun saveUserToDatabase(userId: String, name: String, phone: String, userType: String) {
-        val createdAt = SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault()).format(Date())
-        val user = User(
-            id = userId,
-            name = name,
-            email = "${phone}@hellodoc.com", // Keeping consistency with auth
-            phone = phone,
-            userType = userType,
-            createdAt = createdAt
-        )
-
-        val userRef = database.getReference("users").child(userId)
-        userRef.setValue(user).addOnCompleteListener { task ->
-            showLoading(false)
-            if (task.isSuccessful) {
-                Toast.makeText(this, "Account created successfully!", Toast.LENGTH_SHORT).show()
-                navigateToDashboard(userType)
-            } else {
-                Toast.makeText(this, "Failed to save profile: ${task.exception?.message}", Toast.LENGTH_LONG).show()
-            }
-        }
-    }
-
     private fun navigateToDashboard(userType: String) {
         val intent = if (userType == "care_provider") {
-            Intent(this, CaregiverProfileActivity::class.java)
+            Intent(this, DoctorDashboardActivity::class.java)
         } else {
             Intent(this, ReceiverProfileActivity::class.java)
         }

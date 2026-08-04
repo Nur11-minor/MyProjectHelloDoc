@@ -5,27 +5,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/activity_bg_gradient"
+    android:background="#F8F9FA"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="@dimen/padding_large">
+        android:paddingBottom="24dp">
 
         <!-- Top Navigation Bar -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/topBar"
             android:layout_width="match_parent"
             android:layout_height="64dp"
-            android:paddingHorizontal="@dimen/padding_medium"
+            android:paddingHorizontal="16dp"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:id="@+id/appLogo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/app_name"
+                android:text="HelloDoc"
                 android:textColor="@color/color_primary_teal"
                 android:textSize="22sp"
                 android:textStyle="bold"
@@ -37,18 +37,8 @@
                 android:id="@+id/notificationIcon"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
-                android:layout_marginEnd="16dp"
                 android:src="@drawable/icon_bell"
                 app:tint="@color/text_color_primary"
-                app:layout_constraintEnd_toStartOf="@id/smallProfileImage"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/smallProfileImage"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/profile_pic"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent" />
@@ -60,7 +50,7 @@
             android:id="@+id/profileHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/padding_medium"
+            android:paddingTop="16dp"
             app:layout_constraintTop_toBottomOf="@id/topBar">
 
             <FrameLayout
@@ -72,31 +62,29 @@
                 app:layout_constraintEnd_toEndOf="parent">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/mainProfileImage"
+                    android:id="@+id/profileImage"
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:src="@drawable/profile_pic"
                     app:civ_border_color="@color/color_primary_teal"
                     app:civ_border_width="2dp" />
 
-                <com.google.android.material.floatingactionbutton.FloatingActionButton
-                    android:id="@+id/editProfileFab"
+                <ImageView
+                    android:id="@+id/editProfileIcon"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_gravity="bottom|end"
-                    android:layout_margin="4dp"
-                    app:fabCustomSize="32dp"
-                    app:srcCompat="@drawable/ic_edit"
-                    app:tint="@color/white"
-                    android:backgroundTint="@color/color_primary_teal" />
+                    android:src="@android:drawable/ic_menu_edit"
+                    android:background="@drawable/ic_logout"
+                    android:padding="4dp" />
             </FrameLayout>
 
             <TextView
-                android:id="@+id/userName"
+                android:id="@+id/greetingText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padding_medium"
-                android:text="@string/user_name_placeholder"
+                android:layout_marginTop="16dp"
+                android:text="Hello, Sarah"
                 android:textColor="@color/text_color_primary"
                 android:textSize="24sp"
                 android:textStyle="bold"
@@ -104,271 +92,61 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
-            <TextView
-                android:id="@+id/userDetails"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="@string/user_details_placeholder"
-                android:textColor="@color/text_color_secondary"
-                android:textSize="14sp"
-                app:layout_constraintTop_toBottomOf="@id/userName"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- Action Buttons -->
+        <!-- Stats -->
         <LinearLayout
-            android:id="@+id/actionLayout"
+            android:id="@+id/statsLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
             android:orientation="horizontal"
-            android:padding="@dimen/padding_medium"
-            android:gravity="center"
+            android:paddingHorizontal="16dp"
             app:layout_constraintTop_toBottomOf="@id/profileHeader">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnBookAppointment"
+            <LinearLayout
                 android:layout_width="0dp"
-                android:layout_height="56dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:backgroundTint="@color/color_primary_teal"
-                android:text="@string/book_appointment"
-                android:textAllCaps="false"
-                android:textSize="16sp"
-                app:cornerRadius="12dp" />
+                android:gravity="center"
+                android:orientation="vertical">
+                <TextView android:id="@+id/totalCares" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="12" android:textStyle="bold" android:textSize="18sp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Cares" />
+            </LinearLayout>
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/btnChat"
-                android:layout_width="56dp"
-                android:layout_height="56dp"
-                android:layout_marginStart="@dimen/padding_medium"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="0dp"
-                app:strokeColor="#DDDDDD"
-                app:strokeWidth="1dp">
-                <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_help"
-                    app:tint="@color/color_primary_teal" />
-            </com.google.android.material.card.MaterialCardView>
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:orientation="vertical">
+                <TextView android:id="@+id/totalProviders" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="5" android:textStyle="bold" android:textSize="18sp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Providers" />
+            </LinearLayout>
         </LinearLayout>
 
-        <!-- Tabs Section (using horizontal buttons for simplicity) -->
-        <HorizontalScrollView
-            android:id="@+id/tabScroll"
+        <!-- Lists -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="none"
-            android:paddingHorizontal="@dimen/padding_medium"
-            app:layout_constraintTop_toBottomOf="@id/actionLayout">
+            android:orientation="vertical"
+            android:padding="16dp"
+            app:layout_constraintTop_toBottomOf="@id/statsLayout">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:paddingVertical="@dimen/padding_small">
+            <TextView android:id="@+id/viewAllAppointments" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="View All Appointments" android:textStyle="bold" android:layout_marginTop="16dp" />
+            <ListView android:id="@+id/appointmentListView" android:layout_width="match_parent" android:layout_height="100dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/medical_reports"
-                    android:textColor="@color/color_primary_teal"
-                    android:textStyle="bold"
-                    android:paddingBottom="8dp"
-                    android:layout_marginEnd="24dp" />
+            <TextView android:id="@+id/viewAllCares" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="View All Cares" android:textStyle="bold" android:layout_marginTop="16dp" />
+            <ListView android:id="@+id/caresListView" android:layout_width="match_parent" android:layout_height="100dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/prescriptions"
-                    android:textColor="@color/text_color_secondary"
-                    android:layout_marginEnd="24dp" />
+            <!-- Links -->
+            <TextView android:id="@+id/medicalRecordsLink" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Medical Records" android:padding="12dp" android:layout_marginTop="16dp" />
+            <TextView android:id="@+id/prescriptionsLink" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Prescriptions" android:padding="12dp" />
+            <TextView android:id="@+id/testResultsLink" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Test Results" android:padding="12dp" />
+            <TextView android:id="@+id/helpSupportLink" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Help &amp; Support" android:padding="12dp" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/test_results"
-                    android:textColor="@color/text_color_secondary" />
-            </LinearLayout>
-        </HorizontalScrollView>
-
-        <View
-            android:id="@+id/tabDivider"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#EEEEEE"
-            app:layout_constraintTop_toBottomOf="@id/tabScroll" />
-
-        <!-- Recent Reports List with GlassCard -->
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/reportsSection"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingHorizontal="@dimen/padding_medium"
-            android:paddingTop="@dimen/padding_medium"
-            app:layout_constraintTop_toBottomOf="@id/tabDivider">
-
-            <TextView
-                android:id="@+id/reportsTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/recent_reports"
-                android:textColor="@color/text_color_primary"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/viewAllReports"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/view_all"
-                android:textColor="@color/color_primary_teal"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@id/reportsTitle"
-                app:layout_constraintBottom_toBottomOf="@id/reportsTitle" />
-
-            <!-- Using a vertical linear layout for sample items to show the design -->
-            <LinearLayout
-                android:id="@+id/reportsList"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/padding_small"
-                android:orientation="vertical"
-                app:layout_constraintTop_toBottomOf="@id/reportsTitle">
-
-                <!-- Report Item 1 -->
-                <com.google.android.material.card.MaterialCardView
-                    style="@style/GlassCard"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/padding_small">
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/padding_medium">
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/iconCard1"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            app:cardBackgroundColor="#E0F2F1"
-                            app:cardCornerRadius="8dp"
-                            app:cardElevation="0dp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent">
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_medical_records"
-                                app:tint="@color/color_primary_teal" />
-                        </com.google.android.material.card.MaterialCardView>
-                        <TextView
-                            android:id="@+id/reportName1"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/padding_medium"
-                            android:text="Annual Physical Summary"
-                            android:textColor="@color/text_color_primary"
-                            android:textStyle="bold"
-                            app:layout_constraintStart_toEndOf="@id/iconCard1"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintEnd_toStartOf="@id/downloadIcon1" />
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:text="Dr. Sarah Miller • Oct 12, 2023"
-                            android:textColor="@color/text_color_secondary"
-                            android:textSize="12sp"
-                            app:layout_constraintTop_toBottomOf="@id/reportName1"
-                            app:layout_constraintStart_toStartOf="@id/reportName1"
-                            app:layout_constraintEnd_toEndOf="@id/reportName1" />
-                        <ImageView
-                            android:id="@+id/downloadIcon1"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/ic_arrow_forward"
-                            app:tint="@color/text_color_secondary"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-                <!-- Report Item 2 -->
-                <com.google.android.material.card.MaterialCardView
-                    style="@style/GlassCard"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/padding_small">
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:padding="@dimen/padding_medium">
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/iconCard2"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            app:cardBackgroundColor="#E1F5FE"
-                            app:cardCornerRadius="8dp"
-                            app:cardElevation="0dp"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent">
-                            <ImageView
-                                android:layout_width="24dp"
-                                android:layout_height="24dp"
-                                android:layout_gravity="center"
-                                android:src="@drawable/ic_test_results"
-                                app:tint="#2196F3" />
-                        </com.google.android.material.card.MaterialCardView>
-                        <TextView
-                            android:id="@+id/reportName2"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/padding_medium"
-                            android:text="Chest X-Ray Analysis"
-                            android:textColor="@color/text_color_primary"
-                            android:textStyle="bold"
-                            app:layout_constraintStart_toEndOf="@id/iconCard2"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintEnd_toStartOf="@id/downloadIcon2" />
-                        <TextView
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:text="Dr. James Chen • Aug 05, 2023"
-                            android:textColor="@color/text_color_secondary"
-                            android:textSize="12sp"
-                            app:layout_constraintTop_toBottomOf="@id/reportName2"
-                            app:layout_constraintStart_toStartOf="@id/reportName2"
-                            app:layout_constraintEnd_toEndOf="@id/reportName2" />
-                        <ImageView
-                            android:id="@+id/downloadIcon2"
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
-                            android:src="@drawable/ic_arrow_forward"
-                            app:tint="@color/text_color_secondary"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-                </com.google.android.material.card.MaterialCardView>
-
-            </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <!-- Bottom Spacing for Nav Bar if any -->
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="80dp"
-            app:layout_constraintTop_toBottomOf="@id/reportsSection" />
+            <Button android:id="@+id/btnLogout" android:layout_width="match_parent" android:layout_height="wrap_content" android:text="Logout" android:layout_marginTop="24dp" />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

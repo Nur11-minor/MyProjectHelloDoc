@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.ListView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
@@ -41,6 +42,7 @@ class BookAppointmentActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
+        // These IDs must exist in activity_book_appointment.xml
         doctorsListView = findViewById(R.id.doctorsListView)
         searchEditText = findViewById(R.id.searchEditText)
     }
@@ -56,9 +58,7 @@ class BookAppointmentActivity : AppCompatActivity() {
     }
 
     private fun filterDoctors(query: String) {
-        // In a real app, you would filter your data source here
-        // For now, we'll just show a toast or reload with dummy filtered data
-        android.widget.Toast.makeText(this, "Searching for: $query", android.widget.Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Searching for: $query", Toast.LENGTH_SHORT).show()
     }
 
     private fun loadTopDoctors() {
@@ -72,7 +72,11 @@ class BookAppointmentActivity : AppCompatActivity() {
 
         val adapter = DoctorAdapter(doctors)
         doctorsListView.adapter = adapter
-        setListViewHeight(doctorsListView)
+        
+        // Adjust ListView height to wrap content inside NestedScrollView
+        doctorsListView.post {
+            setListViewHeight(doctorsListView)
+        }
     }
 
     private fun setListViewHeight(listView: ListView) {

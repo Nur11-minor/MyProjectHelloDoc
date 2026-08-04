@@ -20,7 +20,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginTop="24dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/toolbarProfileImg"
@@ -121,7 +122,7 @@
                         app:layout_constraintTop_toBottomOf="@id/bannerSubtitle"
                         app:startIconDrawable="@android:drawable/ic_menu_search">
 
-                        <com.google.android.material.textfield.TextInputEditText
+                        <com.google.android.material.textfield.MaterialAutoCompleteTextView
                             android:id="@+id/searchEditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -214,13 +215,13 @@
                         app:tint="@color/text_color_primary" />
                 </LinearLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/topDoctorsRecyclerView"
+                <ListView
+                    android:id="@+id/doctorsListView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
-                    android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    android:divider="@null"
+                    android:dividerHeight="0dp"
                     app:layout_constraintTop_toBottomOf="@id/topDoctorsTitle"
                     tools:listitem="@layout/item_doctor" />
             </androidx.constraintlayout.widget.ConstraintLayout>

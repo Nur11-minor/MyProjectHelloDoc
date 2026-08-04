@@ -2,14 +2,17 @@ package com.yourpackage.hellodoc
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
+import com.yourpackage.hellodoc.viewmodel.LoginViewModel
 
 class LoginActivity : AppCompatActivity() {
 
@@ -18,6 +21,9 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var passwordInput: TextInputEditText
     private lateinit var loginButton: MaterialButton
     private lateinit var signupLink: TextView
+    private lateinit var progressBar: ProgressBar
+
+    private val viewModel: LoginViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,14 +32,16 @@ class LoginActivity : AppCompatActivity() {
         initViews()
         setupDropdown()
         setupClickListeners()
+        observeViewModel()
     }
 
     private fun initViews() {
         userTypeDropdown = findViewById(R.id.userTypeDropdown)
-        emailInput = findViewById<TextInputLayout>(R.id.emailLayout).findViewById(R.id.text_input_edit_text)
-        passwordInput = findViewById<TextInputLayout>(R.id.passwordLayout).findViewById(R.id.text_input_edit_text)
+        emailInput = findViewById(R.id.emailEditText)
+        passwordInput = findViewById(R.id.passwordEditText)
         loginButton = findViewById(R.id.loginButton)
         signupLink = findViewById(R.id.signupLink)
+        progressBar = findViewById(R.id.loginProgressBar)
     }
 
     private fun setupDropdown() {
@@ -52,47 +60,52 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    private fun observeViewModel() {
+        viewModel.loginState.observe(this) { state ->
+            when (state) {
+                is LoginViewModel.LoginState.Loading -> showLoading(true)
+                is LoginViewModel.LoginState.Success -> {
+                    showLoading(false)
+                    Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
+                    navigateToDashboard(state.user.userType)
+                }
+                is LoginViewModel.LoginState.Error -> {
+                    showLoading(false)
+                    Toast.makeText(this, state.message, Toast.LENGTH_LONG).show()
+                }
+            }
+        }
+    }
+
     private fun performLogin() {
-        val userType = userTypeDropdown.text.toString()
         val email = emailInput.text.toString().trim()
         val password = passwordInput.text.toString().trim()
 
-        // Validation
-        if (userType.isEmpty()) {
-            showError(R.id.userTypeLayout, "Please select login role")
-            return
-        }
-
         if (email.isEmpty()) {
-            showError(R.id.emailLayout, "Email is required")
-            return
-        }
-
-        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-            showError(R.id.emailLayout, "Please enter a valid email")
+            emailInput.error = "Email is required"
             return
         }
 
         if (password.isEmpty()) {
-            showError(R.id.passwordLayout, "Password is required")
+            passwordInput.error = "Password is required"
             return
         }
 
-        // TODO: Implement actual login API call
-        Toast.makeText(this, "Login successful as $userType!", Toast.LENGTH_SHORT).show()
-
-        // Conditional Navigation
-        if (userType.contains("Caregiver", ignoreCase = true) || userType == "Care Provider") {
-            startActivity(Intent(this, DoctorDashboardActivity::class.java))
-        } else {
-            startActivity(Intent(this, ReceiverProfileActivity::class.java))
-        }
-        finish()
+        viewModel.login(email, password)
     }
 
-    private fun showError(layoutId: Int, message: String) {
-        val textInputLayout = findViewById<TextInputLayout>(layoutId)
-        textInputLayout.error = message
-        textInputLayout.requestFocus()
+    private fun showLoading(isLoading: Boolean) {
+        progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        loginButton.isEnabled = !isLoading
+    }
+
+    private fun navigateToDashboard(userType: String) {
+        val intent = if (userType == "care_provider") {
+            Intent(this, DoctorDashboardActivity::class.java)
+        } else {
+            Intent(this, ReceiverProfileActivity::class.java)
+        }
+        startActivity(intent)
+        finish()
     }
 }

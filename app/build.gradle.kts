@@ -48,12 +48,15 @@ dependencies {
     implementation(libs.androidx.credentials)
     implementation(libs.androidx.credentials.play.services.auth)
     implementation(libs.firebase.auth)
-    implementation(libs.firebase.database)
+    implementation(libs.firebase.firestore)
+    implementation(libs.firebase.storage)
     implementation(libs.googleid)
     implementation(libs.material)
     implementation(libs.androidx.constraintlayout)
     implementation("androidx.cardview:cardview:1.0.0")
     implementation("androidx.multidex:multidex:2.0.1")
+    implementation(libs.androidx.activity.ktx)
+    implementation("androidx.fragment:fragment-ktx:1.6.2")
 
     // Circle Image View
     implementation("de.hdodenhof:circleimageview:3.1.0")
