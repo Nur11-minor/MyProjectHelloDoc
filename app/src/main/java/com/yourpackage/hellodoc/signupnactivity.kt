@@ -20,6 +20,7 @@ class SignupActivity : AppCompatActivity() {
 
     private lateinit var userTypeDropdown: AutoCompleteTextView
     private lateinit var nameInput: TextInputEditText
+    private lateinit var emailInput: TextInputEditText
     private lateinit var phoneInput: TextInputEditText
     private lateinit var passwordInput: TextInputEditText
     private lateinit var confirmPasswordInput: TextInputEditText
@@ -45,6 +46,7 @@ class SignupActivity : AppCompatActivity() {
     private fun initViews() {
         userTypeDropdown = findViewById(R.id.userTypeDropdown)
         nameInput = findViewById(R.id.nameEditText)
+        emailInput = findViewById(R.id.emailEditText)
         phoneInput = findViewById(R.id.phoneEditText)
         passwordInput = findViewById(R.id.passwordEditText)
         confirmPasswordInput = findViewById(R.id.confirmPasswordEditText)
@@ -94,6 +96,7 @@ class SignupActivity : AppCompatActivity() {
 
     private fun performSignup() {
         val name = nameInput.text.toString().trim()
+        val email = emailInput.text.toString().trim()
         val phone = phoneInput.text.toString().trim()
         val password = passwordInput.text.toString().trim()
         val confirmPassword = confirmPasswordInput.text.toString().trim()
@@ -105,6 +108,16 @@ class SignupActivity : AppCompatActivity() {
 
         if (name.isEmpty()) {
             nameInput.error = "Name is required"
+            return
+        }
+
+        if (email.isEmpty()) {
+            emailInput.error = "Email is required"
+            return
+        }
+
+        if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
+            emailInput.error = "Please enter a valid email"
             return
         }
 
@@ -131,7 +144,7 @@ class SignupActivity : AppCompatActivity() {
         val user = User(
             id = "",
             name = name,
-            email = "${phone}@hellodoc.com",
+            email = email,
             phone = phone,
             userType = selectedUserType
         )

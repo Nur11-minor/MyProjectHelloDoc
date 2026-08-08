@@ -78,11 +78,11 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun performLogin() {
-        val email = emailInput.text.toString().trim()
+        val emailOrPhone = emailInput.text.toString().trim()
         val password = passwordInput.text.toString().trim()
 
-        if (email.isEmpty()) {
-            emailInput.error = "Email is required"
+        if (emailOrPhone.isEmpty()) {
+            emailInput.error = "Email or Phone is required"
             return
         }
 
@@ -91,7 +91,7 @@ class LoginActivity : AppCompatActivity() {
             return
         }
 
-        viewModel.login(email, password)
+        viewModel.login(emailOrPhone, password)
     }
 
     private fun showLoading(isLoading: Boolean) {

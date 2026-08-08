@@ -47,9 +47,17 @@ class AuthRepository {
         }
     }
 
-    suspend fun login(email: String, password: String): Result<User> {
+    suspend fun login(emailOrPhone: String, password: String): Result<User> {
         return try {
             withTimeout(TIMEOUT_MS) {
+                val email = if (android.util.Patterns.EMAIL_ADDRESS.matcher(emailOrPhone).matches()) {
+                    emailOrPhone
+                } else {
+                    // Assume it's a phone number and try to find the associated email
+                    Log.d(TAG, "Input is not an email, searching for phone: $emailOrPhone")
+                    findEmailByPhone(emailOrPhone) ?: throw Exception("No user found with this phone number")
+                }
+
                 Log.d(TAG, "Starting login for $email")
                 val authResult = auth.signInWithEmailAndPassword(email, password).await()
                 val userId = authResult.user?.uid ?: throw Exception("Failed to get user ID from Auth")
@@ -73,6 +81,19 @@ class AuthRepository {
             }
             Log.e(TAG, "Login failed: $errorMsg", e)
             Result.failure(Exception(errorMsg))
+        }
+    }
+
+    private suspend fun findEmailByPhone(phone: String): String? {
+        val querySnapshot = firestore.collection("users")
+            .whereEqualTo("phone", phone)
+            .get()
+            .await()
+        
+        return if (!querySnapshot.isEmpty) {
+            querySnapshot.documents[0].getString("email")
+        } else {
+            null
         }
     }
 
